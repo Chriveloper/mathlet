@@ -1,5 +1,8 @@
 ---
+import Navbar from '../components/Navbar.astro';
+import '../styles/global.css';
 
+const pageTitle='Kontakt';
 ---
 
 <html lang="en">
@@ -8,14 +11,12 @@
         <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
         <meta name="viewport" content="width=device-width" />
         <meta name="generator" content={Astro.generator} />
-        <title>About</title>
+        <title>{pageTitle}</title>
     </head>
     <body>
-        <a href="/">Home</a>
-        <a href="/about/">About</a>
-        <a href="/blog/">Blog</a>
-        <h1>About</h1>
+		<Navbar />
+        <h1>{pageTitle}</h1>
         <p>Wir sind zwei Schueler</p>
-        <p>Die Website wird mithilfe von dem framework Astro gecodet</p>
+        <p>Die Website wird mithilfe von dem Framework Astro gecodet</p>
     </body>
 </html>

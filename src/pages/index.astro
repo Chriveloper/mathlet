@@ -1,5 +1,8 @@
 ---
+import Navbar from '../components/Navbar.astro';
+import '../styles/global.css';
 
+const pageTitle = 'Mathlet';
 ---
 
 <html lang="en">
@@ -11,10 +14,8 @@
 		<title>Mathlet</title>
 	</head>
 	<body>
-		<a href="/">Home</a>
-        <a href="/about/">About</a>
-		<a href="/blog/">Blog</a>
-		<h1>Mathlet</h1>
+		<Navbar />
+        <h1>{pageTitle}</h1>
 		<p>Projekt von Christian und Philip</p>
 	</body>
 </html>
