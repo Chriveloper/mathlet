@@ -27,25 +27,25 @@ Before you begin, ensure you have met the following requirements:
 ### Development
 
 To start the development server, run:
-    ```sh
-    pnpm run dev
-    ```
+```sh
+pnpm run dev
+```
 
 ### Build
 
 To build the project, run:
-    ```sh
-    pnpm run build
-    ```
+```sh
+pnpm run build
+```
 
 ### Preview
 
 To preview the build, run:
-    ```sh
-    pnpm run preview
-    ```
+```sh
+pnpm run preview
+```
 
-## 🚀 Project Structure
+## Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
 
@@ -62,4 +62,13 @@ Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-Any static assets, like images, can be placed in the `public/` directory.
+## Configuration
+
+- **astro.config.mjs**: Configuration file for the Astro project.
+- **tsconfig.json**: TypeScript configuration file.
+- **.vscode/launch.json**: Configuration for running the development server in Visual Studio Code.
+
+## Deployment
+
+The project is set up to deploy to GitHub Pages using a GitHub Actions workflow. The configuration can be found in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml ).
+
