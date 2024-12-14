@@ -1,15 +1,49 @@
-## 🧞 Commands
+# Mathlet
 
-All commands are run from the root of the project, from a terminal:
+Mathlet is a project by Christian and Philip. This project is built using Astro.
 
-| Command                   | Action                                           |
-| :------------------------ | :----------------------------------------------- |
-| `npm install`             | Installs dependencies                            |
-| `npm run dev`             | Starts local dev server at `localhost:4321`      |
-| `npm run build`           | Build your production site to `./dist/`          |
-| `npm run preview`         | Preview your build locally, before deploying     |
-| `npm run astro ...`       | Run CLI commands like `astro add`, `astro check` |
-| `npm run astro -- --help` | Get help using the Astro CLI                     |
+## Prerequisites
+
+Before you begin, ensure you have met the following requirements:
+
+- You have installed [Node.js](https://nodejs.org/) (version 18 or higher).
+- You have installed [pnpm](https://pnpm.io/) (version 7.1.0 or higher).
+
+## Setup
+
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/yourusername/mathlet.git
+    cd mathlet
+    ```
+
+2. Install dependencies:
+    ```sh
+    pnpm install
+    ```
+
+## Usage
+
+### Development
+
+To start the development server, run:
+    ```sh
+    pnpm run dev
+    ```
+
+### Build
+
+To build the project, run:
+    ```sh
+    pnpm run build
+    ```
+
+### Preview
+
+To preview the build, run:
+    ```sh
+    pnpm run preview
+    ```
 
 ## 🚀 Project Structure
 
