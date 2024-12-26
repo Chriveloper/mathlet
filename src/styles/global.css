@@ -2,51 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-/* nav styles */
 
-.nav-links {
-  width: 100%;
-  top: 5rem;
-  left: 48px;
-  background-color: #ff9776;
-  display: none;
-  margin: 0;
-}
-
-.nav-links a {
-  display: block;
-  text-align: center;
-  padding: 10px 0;
-  text-decoration: none;
-  font-size: 1.2rem;
-  font-weight: bold;
-  text-transform: uppercase;
-}
-
-.nav-links a:hover,
-.nav-links a:focus {
-  background-color: #ff9776;
-}
-
-.expanded {
-  display: unset;
-}
-
-@media screen and (min-width: 636px) {
-  .nav-links {
-    margin-left: 5em;
-    display: block;
-    position: static;
-    width: auto;
-    background: none;
-  }
-
-  .nav-links a {
-    display: inline-block;
-    padding: 15px 20px;
-  }
-
-}
 @layer base {
   :root {
     /* Light Theme - 100% */
@@ -140,12 +96,38 @@
 }
 
 @layer base {
+  
   * {
     @apply border-border;
 
   }
 }
 @layer base {
+  /* Page layout */
+  body {
+    @apply min-h-screen bg-background text-foreground antialiased;
+  }
+
+  main {
+    @apply mx-auto max-w-4xl px-4 pb-12 pt-4 md:px-6;
+  }
+
+  /* Container adjustments */
+  .container {
+    @apply mx-auto max-w-7xl px-4 md:px-6;
+  }
+
+  /* Section refinements */
+  section {
+    @apply py-8 md:py-12 space-y-4;
+  }
+
+  /* Content wrapper */
+  .content-wrapper {
+    @apply mx-auto max-w-prose;
+  }
+
+
   /* Base typography */
   h1 {
     @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-primary mb-8;
