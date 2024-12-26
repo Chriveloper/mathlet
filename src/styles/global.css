@@ -3,21 +3,8 @@
 @tailwind utilities;
 
 
-:root {
-  color-scheme: light dark;
-  --bg-l: rgb(230, 230, 230);
-  --bg-d: rgb(25, 25, 25);
-  --bg-a1-l: rgb(205, 205, 205);
-  --bg-a1-d: rgb(50, 50, 50);
-  --bg-a2-l: rgb(180, 180, 180);
-  --bg-a2-d: rgb(75, 75, 75);
-  --text-l: rgb(25, 25, 25);
-  --text-d: rgb(255, 255, 255);
-}
-
 html {
-  background-color: light-dark(var(--bg-l), var(--bg-d));
-  color: light-dark(var(--text-l), var(--text-d));
+  background-color: #f1f5f9;
   font-family: sans-serif;
 }
 
@@ -38,6 +25,7 @@ h1 {
   font-size: 2.5rem;
 }
 
+/* nav styles */
 
 .nav-links {
   width: 100%;
@@ -82,7 +70,6 @@ h1 {
   }
 
 }
-
 @layer base {
   :root {
     --background: 0 0% 100%;
