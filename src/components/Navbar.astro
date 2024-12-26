@@ -1,35 +1,33 @@
 ---
-import '../styles/global.css';
-
+// Add client-side script for menu toggle
 ---
 
-<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<script>
+  document.getElementById('nav-toggle')?.addEventListener('click', () => {
+    document.getElementById('nav-content')?.classList.toggle('hidden');
+  });
+</script>
 
-<button data-url="https://www.myinstants.com/media/sounds/sigma-boy.mp3" onclick="new Audio(this.getAttribute('data-url')).play()">
-  <span class="material-icons">face</span>
-</button> -->
+<nav class="bg-background p-4">
+  <div class="container mx-auto flex justify-between items-center">
+    <!-- Logo/Brand -->
+    <a href="/" class="text-primary font-bold text-xl">Mathlet</a>
 
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
-<style>
-  .material-symbols-outlined {
-    font-variation-settings:
-    'FILL' 0,
-    'wght' 400,
-    'GRAD' 0,
-    'opsz' 24
-  }
-  </style>
+    <!-- Mobile Menu Button -->
+    <button id="nav-toggle" class="text-primary md:hidden">
+      <span class="material-symbols-outlined">menu</span>
+    </button>
 
-
-<button class="text-primary">
-<span class="material-symbols-outlined">menu</span>
-</button>
-
-
-  <div class="nav-links">
-    <a href="/">Home</a>
-    <a href="/kontakt/">Kontakt</a>
-    <a href="/ankuendigungen/">Ankündigungen</a>
-    <a href="/foerderung/">Förderung</a>
-    <a href="/materialien/">Materialien</a>
+    <!-- Navigation Links -->
+    <div id="nav-content" class="hidden md:flex md:items-center md:space-x-4 absolute md:relative top-16 md:top-0 left-0 right-0 bg-background md:bg-transparent p-4 md:p-0 shadow-md md:shadow-none">
+      <a href="/" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Home</a>
+      <a href="/kontakt" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Kontakt</a>
+      <a href="/ankuendigungen" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Ankündigungen</a>
+      <a href="/foerderung" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Förderung</a>
+      <a href="/materialien" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Materialien</a>
+    </div>
   </div>
+</nav>
+
+<!-- Google Material Icons -->
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
