@@ -1,16 +1,33 @@
 ---
+import '../styles/global.css';
 
 ---
 
-<style>
-
-</style>
-
-<link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+<!-- <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
 
 <button data-url="https://www.myinstants.com/media/sounds/sigma-boy.mp3" onclick="new Audio(this.getAttribute('data-url')).play()">
   <span class="material-icons">face</span>
-</button>
+</button> -->
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=menu" />
+
+<style>
+.material-symbols-outlined {
+  font-variation-settings:
+  'FILL' 0,
+  'wght' 400,
+  'GRAD' 0,
+  'opsz' 24;
+  color: hsl(var(--primary));
+}
+
+</style>
+
+<span class="material-symbols-outlined">
+  menu
+</span>
+
+
   <div class="nav-links">
     <a href="/">Home</a>
     <a href="/kontakt/">Kontakt</a>
