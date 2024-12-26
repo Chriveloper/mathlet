@@ -1,25 +1,55 @@
 ---
 import Header from '../components/Header.astro';
-import Footer from '../components/Footer.astro';
 import '../styles/global.css';
 
 const pageTitle = 'Mathlet';
 ---
 
 <html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<meta name="viewport" content="width=device-width" />
-		<meta name="generator" content={Astro.generator} />
-		<title>{pageTitle}</title>
-	</head>
-	<body>
-		<Header />
+    <head>
+        <meta charset="utf-8" />
+        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+        <meta name="viewport" content="width=device-width" />
+        <meta name="generator" content={Astro.generator} />
+        <title>{pageTitle}</title>
+    </head>
+    <body>
+        <Header />
 
         <h1>{pageTitle}</h1>
-		<p>Projekt von Christian und Philip</p>
+        
+        <section>
+            <p>Wir wollen junge Schüler für Mathematik begeistern!</p>
 
-		<Footer />
-	</body>
+            <h3>Das Problem</h3>
+            <p>Viele Schüler erfahren in ihren Schulen nicht von Mathe-Angeboten wie Wettbewerben oder 
+            erhalten keine angemessene Förderung. Oft fehlen:</p>
+            <ul>
+                <li>Qualitative MathePlus Kurse</li>
+                <li>Begeisterung für Mathematik</li>
+                <li>Informationen über Wettbewerbe</li>
+            </ul>
+
+            <h3>Unser Ansatz</h3>
+            <p>Folgende Punkte planen wir umzusetzen:</p>
+            <ul>
+                <li>Spannenden Mathe-AGs für 5./6. Klässler</li>
+                <li>Interessanten Plakaten an Schulen</li>
+                <li>Unterrichtsmaterialien für Kursleiter</li>
+                <li>Informationen zu Mathewettbewerben</li>
+            </ul>
+			<p>
+				Durch ein Netzwerk aus mathematisch erfahrenen Schülern wollen wir lokale Mathe-AGs mit Fokus auf Wettbewerben für die Unterstufe an.
+			</p>
+			<h3>Mitmachen</h3>
+            <p>Du möchtest:</p>
+            <ul>
+                <li>Eine Mathe-AG an deiner Schule gründen?</li> 
+                <li>Teil unseres Netzwerks werden?</li>
+                <li>Mehr über Mathewettbewerbe erfahren?</li>
+            </ul>
+            <p>Dann <a href="/kontakt">kontaktiere uns</a>!</p>
+        </section>
+
+    </body>
 </html>
