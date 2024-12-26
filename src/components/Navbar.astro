@@ -1,33 +1,51 @@
 ---
-// Add client-side script for menu toggle
+// Frontend logic for mobile menu toggle
 ---
 
 <script>
+  // Toggle mobile menu visibility
   document.getElementById('nav-toggle')?.addEventListener('click', () => {
     document.getElementById('nav-content')?.classList.toggle('hidden');
   });
 </script>
 
+<!-- Main navigation container -->
 <nav class="bg-background p-4">
   <div class="container mx-auto flex justify-between items-center">
-    <!-- Logo/Brand -->
+    <!-- Brand logo -->
     <a href="/" class="text-primary font-bold text-xl">Mathlet</a>
 
-    <!-- Mobile Menu Button -->
+    <!-- Mobile menu button - hidden on medium and larger screens -->
     <button id="nav-toggle" class="text-primary md:hidden">
       <span class="material-symbols-outlined">menu</span>
     </button>
 
-    <!-- Navigation Links -->
-    <div id="nav-content" class="hidden md:flex md:items-center md:space-x-4 absolute md:relative top-16 md:top-0 left-0 right-0 bg-background md:bg-transparent p-4 md:p-0 shadow-md md:shadow-none">
-      <a href="/" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Home</a>
-      <a href="/kontakt" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Kontakt</a>
-      <a href="/ankuendigungen" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Ankündigungen</a>
-      <a href="/foerderung" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Förderung</a>
-      <a href="/materialien" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Materialien</a>
+    <!-- Navigation menu - hidden by default on mobile, visible on medium+ screens -->
+    <div id="nav-content" class="
+      hidden md:flex                 /* Base visibility */
+      absolute md:relative          /* Positioning */
+      top-16 md:top-0 left-0 right-0  /* Mobile positioning */
+      bg-background md:bg-transparent  /* Background */
+      p-4 md:p-0                    /* Padding */
+      shadow-md md:shadow-none      /* Mobile shadow */
+    ">
+      <!-- Navigation links -->
+      <a href="/" class="nav-link">Home</a>
+      <a href="/kontakt" class="nav-link">Kontakt</a>
+      <a href="/ankuendigungen" class="nav-link">Ankündigungen</a>
+      <a href="/foerderung" class="nav-link">Förderung</a>
+      <a href="/materialien" class="nav-link">Materialien</a>
     </div>
   </div>
 </nav>
 
-<!-- Google Material Icons -->
+<!-- Required Google Material Icons -->
+<style>
+  /* Common navigation link styles */
+  .nav-link {
+    @apply block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors;
+  }
+</style>
+
+<!-- Google Icons CDN -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />

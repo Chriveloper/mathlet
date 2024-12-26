@@ -144,14 +144,60 @@
     @apply border-border;
 
   }
-  body {
-    @apply bg-background text-foreground;
-  }
+}
+@layer base {
+  /* Base typography */
   h1 {
-    @apply text-2xl;
+    @apply scroll-m-20 text-4xl font-extrabold tracking-tight lg:text-5xl text-primary mb-8;
   }
+
   h2 {
-    @apply text-xl;
+    @apply scroll-m-20 text-3xl font-semibold tracking-tight first:mt-0 text-primary/90 mb-6;
   }
-  
+
+  h3 {
+    @apply scroll-m-20 text-2xl font-semibold tracking-tight text-primary/80 mb-4;
+  }
+
+  /* Content elements */
+  p {
+    @apply leading-7 [&:not(:first-child)]:mt-6 text-foreground;
+  }
+
+  ul {
+    @apply my-6 ml-6 list-disc [&>li]:mt-2 marker:text-primary;
+  }
+
+  ol {
+    @apply my-6 ml-6 list-decimal [&>li]:mt-2 marker:text-primary;
+  }
+
+  /* Section spacing */
+  section {
+    @apply py-8 md:py-12;
+  }
+
+  /* Links */
+  a:not(.nav-link) {
+    @apply text-primary hover:text-primary/80 underline-offset-4 hover:underline transition-colors;
+  }
+
+  /* Container */
+  .container {
+    @apply px-4 md:px-6;
+  }
+
+  /* Quote blocks */
+  blockquote {
+    @apply mt-6 border-l-2 border-primary pl-6 italic text-foreground/80;
+  }
+
+  /* Code blocks */
+  pre {
+    @apply my-6 rounded-lg bg-muted p-4 font-mono text-sm;
+  }
+
+  code {
+    @apply relative rounded bg-muted px-[0.3rem] py-[0.2rem] font-mono text-sm;
+  }
 }
