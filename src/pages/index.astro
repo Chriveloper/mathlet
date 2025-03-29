@@ -1,77 +1,53 @@
 ---
-import Header from '../components/Header.astro';
-import '@/styles/global.css'
-
-const pageTitle = 'Mathlet';
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<script is:inline>
-	const getThemePreference = () => {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
-		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	};
-	const isDark = getThemePreference() === 'dark';
-	document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
- 
-	if (typeof localStorage !== 'undefined') {
-		const observer = new MutationObserver(() => {
-			const isDark = document.documentElement.classList.contains('dark');
-			localStorage.setItem('theme', isDark ? 'dark' : 'light');
-		});
-		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-	}
-</script>
+<BaseLayout title="Home" description="Welcome to Mathlet">
+  <main class="container mx-auto px-4 py-8 max-w-3xl">
+    <h1 class="text-4xl font-bold text-center mb-6">Mathlet</h1>
+    
+    <p class="text-lg text-center mb-12">
+      Wir wollen junge Schüler für Mathematik begeistern!
+    </p>
 
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{pageTitle}</title>
+    <section class="mb-10">
+      <h3 class="text-2xl font-semibold mb-4">Das Problem</h3>
+      <p class="mb-4">
+        Viele Schüler erfahren in ihren Schulen nicht von Mathe-Angeboten wie Wettbewerben oder 
+        erhalten keine angemessene Förderung. Oft fehlen:
+      </p>
+      <ul class="list-disc ml-6 mb-6">
+        <li>Qualitative MathePlus Kurse</li>
+        <li>Begeisterung für Mathematik</li>
+        <li>Informationen über Wettbewerbe</li>
+      </ul>
+    </section>
 
-    </head>
-    <body>
-        <Header />
-        <main>
-            <div class="content-wrapper">
-                <h1>{pageTitle}</h1>
-                
-                <section>
-                    <p>Wir wollen junge Schüler für Mathematik begeistern!</p>
+    <section class="mb-10">
+      <h3 class="text-2xl font-semibold mb-4">Unser Ansatz</h3>
+      <p class="mb-4">Folgende Punkte planen wir umzusetzen:</p>
+      <ul class="list-disc ml-6 mb-6">
+        <li>Spannenden Mathe-AGs für 5./6. Klässler</li>
+        <li>Interessanten Plakaten an Schulen</li>
+        <li>Unterrichtsmaterialien für Kursleiter</li>
+        <li>Informationen zu Mathewettbewerben</li>
+      </ul>
+      <p class="mb-6">
+        Durch ein Netzwerk aus mathematisch erfahrenen Schülern wollen wir lokale Mathe-AGs mit Fokus auf Wettbewerben für die Unterstufe an.
+      </p>
+    </section>
 
-                    <h3>Das Problem</h3>
-                    <p>Viele Schüler erfahren in ihren Schulen nicht von Mathe-Angeboten wie Wettbewerben oder 
-                    erhalten keine angemessene Förderung. Oft fehlen:</p>
-                    <ul>
-                        <li>Qualitative MathePlus Kurse</li>
-                        <li>Begeisterung für Mathematik</li>
-                        <li>Informationen über Wettbewerbe</li>
-                    </ul>
-
-                    <h3>Unser Ansatz</h3>
-                    <p>Folgende Punkte planen wir umzusetzen:</p>
-                    <ul>
-                        <li>Spannenden Mathe-AGs für 5./6. Klässler</li>
-                        <li>Interessanten Plakaten an Schulen</li>
-                        <li>Unterrichtsmaterialien für Kursleiter</li>
-                        <li>Informationen zu Mathewettbewerben</li>
-                    </ul>
-                    <p>
-                        Durch ein Netzwerk aus mathematisch erfahrenen Schülern wollen wir lokale Mathe-AGs mit Fokus auf Wettbewerben für die Unterstufe an.
-                    </p>
-                    <h3>Mitmachen</h3>
-                    <p>Du möchtest:</p>
-                    <ul>
-                        <li>Eine Mathe-AG an deiner Schule gründen?</li> 
-                        <li>Teil unseres Netzwerks werden?</li>
-                        <li>Mehr über Mathewettbewerbe erfahren?</li>
-                    </ul>
-                    <p>Dann <a href="/kontakt">kontaktiere uns</a>!</p>
-                </section>
-            </div>
-        </main>
-    </body>
-</html>
+    <section class="mb-10">
+      <h3 class="text-2xl font-semibold mb-4">Mitmachen</h3>
+      <p class="mb-4">Du möchtest:</p>
+      <ul class="list-disc ml-6 mb-6">
+        <li>Eine Mathe-AG an deiner Schule gründen?</li>
+        <li>Teil unseres Netzwerks werden?</li>
+        <li>Mehr über Mathewettbewerbe erfahren?</li>
+      </ul>
+      <p class="mb-6">
+        Dann <a href="/kontakt" class="text-blue-600 hover:text-blue-800 underline">kontaktiere uns</a>!
+      </p>
+    </section>
+  </main>
+</BaseLayout>

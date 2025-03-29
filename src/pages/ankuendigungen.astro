@@ -1,50 +1,8 @@
 ---
-import Header from '../components/Header.astro';
-import '@/styles/global.css'
-
-const pageTitle = "Ankündigungen";
+import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<script is:inline>
-	const getThemePreference = () => {
-		if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-			return localStorage.getItem('theme');
-		}
-		return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-	};
-	const isDark = getThemePreference() === 'dark';
-	document.documentElement.classList[isDark ? 'add' : 'remove']('dark');
- 
-	if (typeof localStorage !== 'undefined') {
-		const observer = new MutationObserver(() => {
-			const isDark = document.documentElement.classList.contains('dark');
-			localStorage.setItem('theme', isDark ? 'dark' : 'light');
-		});
-		observer.observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
-	}
-</script>
-
-<html lang="en">
-    <head>
-        <meta charset="utf-8" />
-        <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-        <meta name="viewport" content="width=device-width" />
-        <meta name="generator" content={Astro.generator} />
-        <title>{pageTitle}</title>
-    </head>
-    <body>
-        <Header />
-
-        <main>
-            <div class="content-wrapper">
-                <h1>{pageTitle}</h1>
-                <p>Willkommen auf unserem Blog</p>
-                <ul>
-                    <li><a href="/posts/post-1/">Post 1</a></li>
-                    <li><a href="/posts/post-2/">Post 2</a></li>
-                    <li><a href="/posts/post-3/">Post 3</a></li>
-                </ul>
-            </div>
-        </main>
-    </body>
-</html>
+<BaseLayout title="Home" description="Welcome to Mathlet">
+  <h1>Welcome to Mathlet</h1>
+  <!-- Page content -->
+</BaseLayout>

@@ -1,0 +1,23 @@
+---
+import Navbar from './Navbar.astro';
+
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<header class="bg-background py-12 px-4">
+  <div class="container mx-auto max-w-4xl">
+    <h1 class="text-4xl md:text-5xl font-bold text-foreground mb-4">
+      {title}
+    </h1>
+    {description && (
+      <p class="text-lg text-foreground/80 max-w-prose">
+        {description}
+      </p>
+    )}
+  </div>
+</header>
