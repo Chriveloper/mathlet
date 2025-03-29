@@ -61,45 +61,69 @@ import ThemeToggle from '../theme-toggle.astro';
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
 
 <script is:inline>
-  // Update the theme toggle icons to match current theme
-  function updateThemeIcons() {
-    const isDark = document.documentElement.classList.contains('dark');
-    console.log(`Updating theme icons. Current theme: ${isDark ? 'dark' : 'light'}`);
-    
-    // Mobile icons
-    document.getElementById('mobile-theme-icon-light').style.display = isDark ? 'block' : 'none';
-    document.getElementById('mobile-theme-icon-dark').style.display = isDark ? 'none' : 'block';
-    console.log(`Mobile icons updated. Light icon: ${isDark ? 'visible' : 'hidden'}, Dark icon: ${isDark ? 'hidden' : 'visible'}`);
-    
-    // Desktop icons
-    document.getElementById('desktop-theme-icon-light').style.display = isDark ? 'block' : 'none';
-    document.getElementById('desktop-theme-icon-dark').style.display = isDark ? 'none' : 'block';
-    console.log(`Desktop icons updated. Light icon: ${isDark ? 'visible' : 'hidden'}, Dark icon: ${isDark ? 'hidden' : 'visible'}`);
-  }
-
-  // Run on page load
+  // Wait for DOM content to be loaded
   document.addEventListener('DOMContentLoaded', () => {
-    console.log("DOM loaded, updating theme icons");
-    updateThemeIcons();
-  });
-  
-  // Override the toggleTheme function to update icons
-  const originalToggleTheme = window.toggleTheme;
-  window.toggleTheme = function() {
-    console.log("Theme toggle button clicked");
-    if (originalToggleTheme) {
-      console.log("Calling original toggleTheme function");
-      originalToggleTheme();
-    } else {
-      console.log("No original toggleTheme found, toggling class manually");
-      document.documentElement.classList.toggle('dark');
+    console.log("📱 Navbar DOM loaded, setting up theme icon handlers");
+    
+    // Function to update icons based on current theme
+    function updateThemeIcons() {
+      const isDark = document.documentElement.classList.contains('dark');
+      console.log(`🎭 Updating theme icons to match ${isDark ? 'dark' : 'light'} mode`);
+      
+      // Get all icon elements
+      const mobileLight = document.getElementById('mobile-theme-icon-light');
+      const mobileDark = document.getElementById('mobile-theme-icon-dark');
+      const desktopLight = document.getElementById('desktop-theme-icon-light');
+      const desktopDark = document.getElementById('desktop-theme-icon-dark');
+      
+      // Validate elements exist before updating
+      if (mobileLight && mobileDark) {
+        mobileLight.style.display = isDark ? 'block' : 'none';
+        mobileDark.style.display = isDark ? 'none' : 'block';
+        console.log(`📱 Mobile icons updated: showing ${isDark ? 'light' : 'dark'} icon`);
+      } else {
+        console.warn("⚠️ Mobile theme icons not found!");
+      }
+      
+      if (desktopLight && desktopDark) {
+        desktopLight.style.display = isDark ? 'block' : 'none';
+        desktopDark.style.display = isDark ? 'none' : 'block';
+        console.log(`🖥️ Desktop icons updated: showing ${isDark ? 'light' : 'dark'} icon`);
+      } else {
+        console.warn("⚠️ Desktop theme icons not found!");
+      }
     }
+    
+    // Initial update
     updateThemeIcons();
-  };
-
-  // Initial update
-  console.log("Running initial icon update");
-  updateThemeIcons();
+    
+    // Listen for theme toggle button clicks
+    const themeButtons = document.querySelectorAll('[onclick="toggleTheme()"]');
+    themeButtons.forEach(button => {
+      button.addEventListener('click', () => {
+        console.log("🖱️ Theme toggle button clicked");
+        setTimeout(updateThemeIcons, 0); // Update after state change
+      });
+    });
+    
+    // Listen for custom theme change events
+    document.addEventListener('themeChanged', (e) => {
+      console.log(`📣 Theme change event received: ${e.detail.isDark ? 'dark' : 'light'}`);
+      updateThemeIcons();
+    });
+    
+    // Listen for the class change on html element directly
+    const observer = new MutationObserver((mutations) => {
+      mutations.forEach((mutation) => {
+        if (mutation.attributeName === 'class') {
+          console.log("👀 Detected class change on HTML element");
+          updateThemeIcons();
+        }
+      });
+    });
+    
+    observer.observe(document.documentElement, { attributes: true });
+  });
 </script>
 
 <ThemeToggle />
