@@ -1,18 +1,40 @@
+---
+import ThemeToggle from '../theme-toggle.astro';
+---
+
 <script>
-  document.getElementById('nav-toggle')?.addEventListener('click', () => {
-    document.getElementById('nav-content')?.classList.toggle('hidden');
+  const navToggle = document.getElementById('nav-toggle');
+  const navContent = document.getElementById('nav-content');
+  const menuIcon = document.getElementById('menu-icon');
+
+  navToggle?.addEventListener('click', () => {
+    navContent?.classList.toggle('hidden');
+    // Toggle between menu and close icons
+    if (menuIcon) {
+      menuIcon.textContent = menuIcon.textContent === 'menu' ? 'close' : 'menu';
+    }
   });
 </script>
 
-<nav class="bg-background p-4">
+<nav class="bg-background p-4 border-b border-border">
   <div class="container mx-auto flex justify-between items-center">
     <!-- Logo/Brand -->
     <a href="/" class="text-primary font-bold text-xl">Mathlet</a>
 
     <!-- Mobile Menu Button -->
-    <button id="nav-toggle" class="text-primary md:hidden">
-      <span class="material-symbols-outlined">menu</span>
-    </button>
+    <div class="flex items-center gap-2 md:hidden">
+      <button 
+        onclick="toggleTheme()"
+        class="p-2 text-foreground hover:text-primary transition-colors"
+        aria-label="Toggle theme"
+      >
+        <span id="mobile-theme-icon-light" class="material-symbols-outlined">light_mode</span>
+        <span id="mobile-theme-icon-dark" class="material-symbols-outlined">dark_mode</span>
+      </button>
+      <button id="nav-toggle" class="text-primary">
+        <span id="menu-icon" class="material-symbols-outlined">menu</span>
+      </button>
+    </div>
 
     <!-- Navigation Links -->
     <div id="nav-content" class="hidden md:flex md:items-center md:space-x-4 absolute md:relative top-16 md:top-0 left-0 right-0 bg-background md:bg-transparent p-4 md:p-0 shadow-md md:shadow-none">
@@ -21,9 +43,53 @@
       <a href="/ankuendigungen" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Ankündigungen</a>
       <a href="/foerderung" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Förderung</a>
       <a href="/materialien" class="block md:inline-block py-2 px-4 text-foreground hover:text-primary transition-colors">Materialien</a>
+      
+      <!-- Theme Toggle (Desktop) -->
+      <button 
+        onclick="toggleTheme()"
+        class="hidden md:block p-2 text-foreground hover:text-primary transition-colors"
+        aria-label="Toggle theme"
+      >
+        <span id="desktop-theme-icon-light" class="material-symbols-outlined">light_mode</span>
+        <span id="desktop-theme-icon-dark" class="material-symbols-outlined">dark_mode</span>
+      </button>
     </div>
   </div>
 </nav>
 
 <!-- Google Material Icons -->
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+
+<script is:inline>
+  // Update the theme toggle icons to match current theme
+  function updateThemeIcons() {
+    const isDark = document.documentElement.classList.contains('dark');
+    
+    // Mobile icons
+    document.getElementById('mobile-theme-icon-light').style.display = isDark ? 'block' : 'none';
+    document.getElementById('mobile-theme-icon-dark').style.display = isDark ? 'none' : 'block';
+    
+    // Desktop icons
+    document.getElementById('desktop-theme-icon-light').style.display = isDark ? 'block' : 'none';
+    document.getElementById('desktop-theme-icon-dark').style.display = isDark ? 'none' : 'block';
+  }
+
+  // Run on page load
+  document.addEventListener('DOMContentLoaded', updateThemeIcons);
+  
+  // Override the toggleTheme function to update icons
+  const originalToggleTheme = window.toggleTheme;
+  window.toggleTheme = function() {
+    if (originalToggleTheme) {
+      originalToggleTheme();
+    } else {
+      document.documentElement.classList.toggle('dark');
+    }
+    updateThemeIcons();
+  };
+
+  // Initial update
+  updateThemeIcons();
+</script>
+
+<ThemeToggle />
