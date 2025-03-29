@@ -64,31 +64,41 @@ import ThemeToggle from '../theme-toggle.astro';
   // Update the theme toggle icons to match current theme
   function updateThemeIcons() {
     const isDark = document.documentElement.classList.contains('dark');
+    console.log(`Updating theme icons. Current theme: ${isDark ? 'dark' : 'light'}`);
     
     // Mobile icons
     document.getElementById('mobile-theme-icon-light').style.display = isDark ? 'block' : 'none';
     document.getElementById('mobile-theme-icon-dark').style.display = isDark ? 'none' : 'block';
+    console.log(`Mobile icons updated. Light icon: ${isDark ? 'visible' : 'hidden'}, Dark icon: ${isDark ? 'hidden' : 'visible'}`);
     
     // Desktop icons
     document.getElementById('desktop-theme-icon-light').style.display = isDark ? 'block' : 'none';
     document.getElementById('desktop-theme-icon-dark').style.display = isDark ? 'none' : 'block';
+    console.log(`Desktop icons updated. Light icon: ${isDark ? 'visible' : 'hidden'}, Dark icon: ${isDark ? 'hidden' : 'visible'}`);
   }
 
   // Run on page load
-  document.addEventListener('DOMContentLoaded', updateThemeIcons);
+  document.addEventListener('DOMContentLoaded', () => {
+    console.log("DOM loaded, updating theme icons");
+    updateThemeIcons();
+  });
   
   // Override the toggleTheme function to update icons
   const originalToggleTheme = window.toggleTheme;
   window.toggleTheme = function() {
+    console.log("Theme toggle button clicked");
     if (originalToggleTheme) {
+      console.log("Calling original toggleTheme function");
       originalToggleTheme();
     } else {
+      console.log("No original toggleTheme found, toggling class manually");
       document.documentElement.classList.toggle('dark');
     }
     updateThemeIcons();
   };
 
   // Initial update
+  console.log("Running initial icon update");
   updateThemeIcons();
 </script>
 

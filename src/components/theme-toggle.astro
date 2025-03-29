@@ -1,26 +1,66 @@
 <script is:inline>
-  // Check system preference and localStorage on load
-  const getThemePreference = () => {
-    if (typeof localStorage !== 'undefined' && localStorage.getItem('theme')) {
-      return localStorage.getItem('theme');
+  // Prevent duplicate initialization
+  if (typeof window.__themeScriptLoaded === 'undefined') {
+    window.__themeScriptLoaded = true;
+    console.log("Theme script initializing...");
+    
+    // Function to apply the current theme
+    function applyTheme(isDark) {
+      console.log(`Applying theme: ${isDark ? 'dark' : 'light'}`);
+      if (isDark) {
+        document.documentElement.classList.add('dark');
+      } else {
+        document.documentElement.classList.remove('dark');
+      }
+      
+      // Update localStorage
+      localStorage.setItem('theme', isDark ? 'dark' : 'light');
+      console.log(`Theme saved to localStorage: ${isDark ? 'dark' : 'light'}`);
     }
-    return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
-  };
-
-  // Apply theme
-  const theme = getThemePreference();
-  document.documentElement.classList.toggle('dark', theme === 'dark');
-
-  // Handle system preference changes
-  window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
-    if (!localStorage.getItem('theme')) {
-      document.documentElement.classList.toggle('dark', e.matches);
+    
+    // Function to get theme from system/localStorage
+    function getCurrentTheme() {
+      // First check localStorage for user preference
+      const storedTheme = localStorage.getItem('theme');
+      console.log(`Theme in localStorage: ${storedTheme || 'not set'}`);
+      
+      if (storedTheme === 'dark') {
+        console.log("Using dark theme from localStorage");
+        return true;
+      }
+      if (storedTheme === 'light') {
+        console.log("Using light theme from localStorage");
+        return false;
+      }
+      
+      // Fall back to system preference
+      const systemPrefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      console.log(`System prefers dark mode: ${systemPrefersDark}`);
+      return systemPrefersDark;
     }
-  });
-
-  // Theme toggle function
-  window.toggleTheme = () => {
-    const isDark = document.documentElement.classList.toggle('dark');
-    localStorage.setItem('theme', isDark ? 'dark' : 'light');
-  };
+    
+    // Apply theme immediately to prevent flash
+    const initialTheme = getCurrentTheme();
+    console.log(`Initial theme detection: ${initialTheme ? 'dark' : 'light'}`);
+    applyTheme(initialTheme);
+    
+    // Listen for system preference changes
+    window.matchMedia('(prefers-color-scheme: dark)').addEventListener('change', (e) => {
+      console.log(`System preference changed to: ${e.matches ? 'dark' : 'light'}`);
+      // Only apply if user hasn't set a preference
+      if (!localStorage.getItem('theme')) {
+        console.log("No user preference saved, following system preference");
+        applyTheme(e.matches);
+      } else {
+        console.log("User preference exists, ignoring system change");
+      }
+    });
+    
+    // Global toggle function
+    window.toggleTheme = function() {
+      const newDarkMode = !document.documentElement.classList.contains('dark');
+      console.log(`Theme toggled by user to: ${newDarkMode ? 'dark' : 'light'}`);
+      applyTheme(newDarkMode);
+    };
+  }
 </script>
