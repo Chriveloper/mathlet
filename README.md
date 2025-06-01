@@ -1,74 +1,68 @@
-# Mathlet
+# Astro Starter Kit: Blog
 
-Mathlet is a project by Christian and Philip. This project is built using Astro.
-
-## Prerequisites
-
-Before you begin, ensure you have met the following requirements:
-
-- You have installed [Node.js](https://nodejs.org/) (version 18 or higher).
-- You have installed [pnpm](https://pnpm.io/) (version 7.1.0 or higher).
-
-## Setup
-
-1. Clone the repository:
-    ```sh
-    git clone https://github.com/yourusername/mathlet.git
-    cd mathlet
-    ```
-
-2. Install dependencies:
-    ```sh
-    pnpm install
-    ```
-
-## Usage
-
-### Development
-
-To start the development server, run:
 ```sh
-pnpm run dev
+pnpm create astro@latest -- --template blog
 ```
 
-### Build
+[![Open in StackBlitz](https://developer.stackblitz.com/img/open_in_stackblitz.svg)](https://stackblitz.com/github/withastro/astro/tree/latest/examples/blog)
+[![Open with CodeSandbox](https://assets.codesandbox.io/github/button-edit-lime.svg)](https://codesandbox.io/p/sandbox/github/withastro/astro/tree/latest/examples/blog)
+[![Open in GitHub Codespaces](https://github.com/codespaces/badge.svg)](https://codespaces.new/withastro/astro?devcontainer_path=.devcontainer/blog/devcontainer.json)
 
-To build the project, run:
-```sh
-pnpm run build
-```
+> 🧑‍🚀 **Seasoned astronaut?** Delete this file. Have fun!
 
-### Preview
+![blog](https://github.com/withastro/astro/assets/2244813/ff10799f-a816-4703-b967-c78997e8323d)
 
-To preview the build, run:
-```sh
-pnpm run preview
-```
+Features:
 
-## Project Structure
+- ✅ Minimal styling (make it your own!)
+- ✅ 100/100 Lighthouse performance
+- ✅ SEO-friendly with canonical URLs and OpenGraph data
+- ✅ Sitemap support
+- ✅ RSS Feed support
+- ✅ Markdown & MDX support
+
+## 🚀 Project Structure
 
 Inside of your Astro project, you'll see the following folders and files:
 
 ```text
-/
 ├── public/
 ├── src/
-│   └── pages/
-│       └── index.astro
-└── package.json
+│   ├── components/
+│   ├── content/
+│   ├── layouts/
+│   └── pages/
+├── astro.config.mjs
+├── README.md
+├── package.json
+└── tsconfig.json
 ```
 
 Astro looks for `.astro` or `.md` files in the `src/pages/` directory. Each page is exposed as a route based on its file name.
 
 There's nothing special about `src/components/`, but that's where we like to put any Astro/React/Vue/Svelte/Preact components.
 
-## Configuration
+The `src/content/` directory contains "collections" of related Markdown and MDX documents. Use `getCollection()` to retrieve posts from `src/content/blog/`, and type-check your frontmatter using an optional schema. See [Astro's Content Collections docs](https://docs.astro.build/en/guides/content-collections/) to learn more.
 
-- **astro.config.mjs**: Configuration file for the Astro project.
-- **tsconfig.json**: TypeScript configuration file.
-- **.vscode/launch.json**: Configuration for running the development server in Visual Studio Code.
+Any static assets, like images, can be placed in the `public/` directory.
 
-## Deployment
+## 🧞 Commands
 
-The project is set up to deploy to GitHub Pages using a GitHub Actions workflow. The configuration can be found in [`.github/workflows/deploy.yml`](.github/workflows/deploy.yml ).
+All commands are run from the root of the project, from a terminal:
 
+| Command                   | Action                                           |
+| :------------------------ | :----------------------------------------------- |
+| `pnpm install`             | Installs dependencies                            |
+| `pnpm dev`             | Starts local dev server at `localhost:4321`      |
+| `pnpm build`           | Build your production site to `./dist/`          |
+| `pnpm preview`         | Preview your build locally, before deploying     |
+| `pnpm astro ...`       | Run CLI commands like `astro add`, `astro check` |
+| `pnpm astro -- --help` | Get help using the Astro CLI                     |
+
+## 👀 Want to learn more?
+
+Check out [our documentation](https://docs.astro.build) or jump into our [Discord server](https://astro.build/chat).
+
+## Credit
+
+This theme is based off of the lovely [Bear Blog](https://github.com/HermanMartinus/bearblog/).
